@@ -44,8 +44,22 @@ public class LogicServlet extends HttpServlet {
 
         if (emptyFieldIndex >= 0) {
             field.getField().put(emptyFieldIndex, Sign.NOUGHT);
-        }
+            if (checkWin(resp, currentSession, field)) {
+                return;
+            }
+        } else {
+            currentSession.setAttribute("draw", true);
 
+            // Считаем список значков
+            List<Sign> data = field.getFieldData();
+
+            // Обновляем объект поля и список значков в сессии
+            currentSession.setAttribute("data", data);
+            currentSession.setAttribute("field", field);
+
+            resp.sendRedirect("/index.jsp");
+            return;
+        }
         // Считаем список значков
         List<Sign> data = field.getFieldData();
 
@@ -54,17 +68,6 @@ public class LogicServlet extends HttpServlet {
         currentSession.setAttribute("field", field);
 
         resp.sendRedirect("/index.jsp");
-
-        if (checkWin(resp, currentSession, field)) {
-            return;
-        }
-        if (emptyFieldIndex >= 0) {
-            field.getField().put(emptyFieldIndex, Sign.NOUGHT);
-            // Проверяем, не победил ли нолик после добавление последнего нолика
-            if (checkWin(resp, currentSession, field)) {
-                return;
-            }
-        }
     }
 
     private int getSelectedIndex(HttpServletRequest request) {
