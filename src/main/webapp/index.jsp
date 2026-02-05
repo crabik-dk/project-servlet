@@ -15,19 +15,19 @@
 
 <table>
     <tr>
-        <td onclick="window.location='/logic?click=0'">${data.get(0).getSign()}
-        <td onclick="window.location='/logic?click=1'">${data.get(1).getSign()}
-        <td onclick="window.location='/logic?click=2'">${data.get(2).getSign()}
+        <td onclick="window.location='/logic?click=0'" class="${data.get(0).getSign() eq CROSSES ? 'x' : (data.get(0).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(0).getSign()}</td>
+        <td onclick="window.location='/logic?click=1'" class="${data.get(1).getSign() eq CROSSES ? 'x' : (data.get(1).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(1).getSign()}</td>
+        <td onclick="window.location='/logic?click=2'" class="${data.get(2).getSign() eq CROSSES ? 'x' : (data.get(2).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(2).getSign()}</td>
     </tr>
     <tr>
-        <td onclick="window.location='/logic?click=3'">${data.get(3).getSign()}
-        <td onclick="window.location='/logic?click=4'">${data.get(4).getSign()}
-        <td onclick="window.location='/logic?click=5'">${data.get(5).getSign()}
+        <td onclick="window.location='/logic?click=3'" class="${data.get(3).getSign() eq CROSSES ? 'x' : (data.get(3).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(3).getSign()}</td>
+        <td onclick="window.location='/logic?click=4'" class="${data.get(4).getSign() eq CROSSES ? 'x' : (data.get(4).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(4).getSign()}</td>
+        <td onclick="window.location='/logic?click=5'" class="${data.get(5).getSign() eq CROSSES ? 'x' : (data.get(5).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(5).getSign()}</td>
     </tr>
     <tr>
-        <td onclick="window.location='/logic?click=6'">${data.get(6).getSign()}
-        <td onclick="window.location='/logic?click=7'">${data.get(7).getSign()}
-        <td onclick="window.location='/logic?click=8'">${data.get(8).getSign()}
+        <td onclick="window.location='/logic?click=6'" class="${data.get(6).getSign() eq CROSSES ? 'x' : (data.get(6).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(6).getSign()}</td>
+        <td onclick="window.location='/logic?click=7'" class="${data.get(7).getSign() eq CROSSES ? 'x' : (data.get(7).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(7).getSign()}</td>
+        <td onclick="window.location='/logic?click=8'" class="${data.get(8).getSign() eq CROSSES ? 'x' : (data.get(8).getSign() eq NOUGHTS ? 'o' : '')}">${data.get(8).getSign()}</td>
     </tr>
 </table>
 
@@ -35,16 +35,16 @@
 <c:set var="CROSSES" value="<%=Sign.CROSS%>"/>
 <c:set var="NOUGHTS" value="<%=Sign.NOUGHT%>"/>
 
-<c:if test="${winner == CROSSES}">
-    <h1>CROSSES WIN!</h1>
+<c:if test="${winner eq CROSSES}">
+    <h1 class="win-message">CROSSES WIN!</h1>
     <button onclick="restart()">Start again</button>
 </c:if>
-<c:if test="${winner == NOUGHTS}">
-    <h1>NOUGHTS WIN!</h1>
+<c:if test="${winner eq NOUGHTS}">
+    <h1 class="win-message">NOUGHTS WIN!</h1>
     <button onclick="restart()">Start again</button>
 </c:if>
 <c:if test="${draw}">
-    <h1>IT'S A DRAW</h1>
+    <h1 class="win-message">IT'S A DRAW</h1>
     <br>
     <button onclick="restart()">Start again</button>
 </c:if>
